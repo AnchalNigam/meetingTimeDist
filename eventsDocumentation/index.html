@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from chatapi.edwisor.com/eventDoc/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 May 2018 07:42:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Events</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/materialize.min.css">
+    <!-- <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+    <style>
+    /* Custom Stylesheet */
+
+    .icon-block {
+        padding: 0 15px;
+    }
+
+    .icon-block .material-icons {
+        font-size: inherit;
+    }
+    </style>
+</head>
+
+<body>
+   
+    <div class="section no-pad-bot" style="margin-bottom: 0px" id="index-banner">
+        <div class="container" style="width: 80%">
+          <p style="font-size: 2em; font-weight: 540; text-align: center">Events documentation</p>
+            <div class="row">
+
+                <div class="col hide-on-small-only m5 l2">
+                    <ul class="section table-of-contents">
+                        <li><a href="#listen" style="color: #03a9f4; font-size: 1.2em; font-weight: bold">Listen</a></li>
+                                                <li><a href="#verifyUser">verifyUser</a></li>
+                                                <li><a href="#usersList">online-user-list</a></li>
+                                                <li><a href="#meetings">Get a meeeting</a></li>
+						
+						
+                    
+                        <li><a href="#emit" style="color: #03a9f4; font-size: 1.2em; font-weight: bold">Emit</a></li>
+                                                <li><a href="#set-user">setUser</a></li>
+                                                <li><a href="#create-meeting">create-meeting</a></li>
+                                                 <li><a href="#update-meeting">update-meeting</a></li>
+                                                <li><a href="#delete-meeting">delete-meeting</a></li>                        
+                                                <li><a href="#remind-event">remind-event</a></li>
+                                                 <li><a href="#remind-event-update">remind-event-update</a></li>
+                                                 <li><a href="#mail-remind-event-update">mail-remind-event-update</a></li>
+
+						
+						<li><a href="#disconnect">disconnect</a></li>
+                       
+                    </ul>
+                </div>
+
+                <div class="col s12 m7 l10">
+
+                    <div id="listen" class="section scrollspy"></div>
+                    <h4>Events to listen</h4>
+
+                    <div id="verifyUser" class="section scrollspy">
+                        <h5>verifyUser event</h5>
+                        This event <span style="font-weight: 600">("verifyUser")</span> has to be listened on the user's end to verify user authentication.<br/>
+                        user will only be set as online user after verification of authentication token.<br/>
+                    </div>
+                    <div id="usersList" class="section scrollspy">
+                        <h5>online-user-list event</h5>
+                        This event <span style="font-weight: 600">("online-user-list")</span> has to be listened on the admin end to identify all available normal users that are currently online.<br/>
+                      
+                        The output will be an object, object has key as userId and value as full name.
+                    </div>
+				
+                    <div id="meetings" class="section scrollspy">
+                        <h5>meetings</h5>
+                       
+                        This event <span style="font-weight: 600">("meetings")</span> has to be listened at normal user side to get meetings which is created by admin.<br/>
+					
+                        Example output it as follows:
+						<pre>
+ {
+meetingId":Meeting Id,
+"meetingCreatorId":Admin Id who is creating meeting,
+"meetingCreatorName":Admin name who is creating meeting,
+"title":Meeting title,
+"start":start time of meeting,
+"end":end time of meeting,
+"venueName":Meeting venue,
+"meetingPurpose":Purpose,
+"meetingPartnerId": User id with whom meeting is scheduled,
+"meetingPartner":User name with whom meeting is scheduled,
+"createdOn":creation date,
+"modifiedOn":modification date
+}
+						</pre>
+                    </div>
+                     
+					  
+					
+
+                    <div id="emit" class="section scrollspy"></div>
+                    <h4>Events to emit</h4>
+
+                    <div id="set-user" class="section scrollspy">
+                        <h5>setUser event</h5>
+                        This event <span style="font-weight: 600">("setUser")</span> has to be emitted when a user comes online.<br/>
+                        User can only be set as online only after verification of authentication token.
+                        The following data has to be emitted:<br/>
+                        authentication token.
+                    </div>
+			<div id="create-meeting" class="section scrollspy">
+                        <h5>create-meeting</h5>
+                        This event <span style="font-weight: 600">("create-meeting")</span> has to be emitted when a admin wants to create a meeting.<br/>
+                      
+                        The following data has to be emitted for creating meeting:<br/>
+						<pre>
+{
+meetingId":Meeting Id,
+"meetingCreatorId":Admin Id who is creating meeting,
+"meetingCreatorName":Admin name who is creating meeting,
+"title":Meeting title,
+"start":start time of meeting,
+"end":end time of meeting,
+"venueName":Meeting venue,
+"meetingPurpose":Purpose,
+"meetingPartnerId": User id with whom meeting is scheduled,
+"meetingPartner":User name with whom meeting is scheduled,
+"createdOn":creation date,
+"modifiedOn":modification date
+}
+						</pre>
+                    </div>
+                    <div id="update-meeting" class="section scrollspy">
+                        <h5>update-meeting</h5>
+                        This event <span style="font-weight: 600">("update-meeting")</span> has to be emitted when a admin wants to update meeting.<br/>
+                        The following data has to be emitted:<br/>
+                        <pre>
+{
+meetingId":Meeting Id,
+"meetingCreatorId":Admin Id who is creating meeting,
+"meetingCreatorName":Admin name who is creating meeting,
+"title":Meeting title,
+"start":start time of meeting,
+"end":end time of meeting,
+"venueName":Meeting venue,
+"meetingPurpose":Purpose,
+"meetingPartnerId": User id with whom meeting is scheduled,
+"meetingPartner":User name with whom meeting is scheduled,
+
+}
+			
+                  </pre>
+                    </div>
+                    <div id="delete-meeting" class="section scrollspy">
+                        <h5>delete-meeting</h5>
+                        This event <span style="font-weight: 600">("delete-meeting")</span> has to be emitted, when the admin wants to delete a meeting.<br/>
+                        The following data has to be emitted<br/>
+						<pre>
+{
+meetingId":Meeting Id,
+"meetingCreatorId":Admin Id who is creating meeting,
+"meetingCreatorName":Admin name who is creating meeting,
+"title":Meeting title,
+"meetingPartnerId": User id with whom meeting is scheduled,
+"meetingPartner":User name with whom meeting is scheduled,
+
+}
+	
+                     </pre>
+                    </div>
+		    <div id="remind-event" class="section scrollspy">
+                        <h5>remind-event</h5>
+                        This event <span style="font-weight: 600">("remind-event")</span> has to be emitted, when the meeting is going to start within 15 minutes for mailing to the concerned user.<br/>
+                         The following data has to be emitted<br/>
+						<pre>
+{
+meetingId":Meeting Id,
+"meetingCreatorId":Admin Id who is creating meeting,
+"meetingCreatorName":Admin name who is creating meeting,
+"title":Meeting title,
+"start":start time of meeting,
+"end":end time of meeting,
+"venueName":Meeting venue,
+"meetingPurpose":Purpose,
+"meetingPartnerId": User id with whom meeting is scheduled,
+"meetingPartner":User name with whom meeting is scheduled,
+
+}
+                     </pre>
+						
+                    </div>
+		    <div id="remind-event-update" class="section scrollspy">
+                        <h5>remind-event-update</h5>
+                        This event <span style="font-weight: 600">("remind-event-update")</span> has to be emitted to update the status of snooze to dismiss.<br/>
+                        The following data has to be emitted<br/>
+						<pre>
+{
+"meetingId":meetingId,
+"user":type of user (normal or admin)
+  }
+                     </pre>
+                    </div>
+		    <div id="mail-remind-event-update" class="section scrollspy">
+                        <h5>mail-remind-event-update</h5>
+                        This event <span style="font-weight: 600">("mail-remind-event-update")</span> has to be emitted to update the mail sent status to 1 (mail is sent). <br/>
+                        The data has to be emitted<br/>
+  <pre>
+{
+"meetingId":meetingId,
+"user":type of user (normal or admin)
+  }
+                     </pre>
+						
+                    </div>
+					
+		   <div id="disconnect" class="section scrollspy">
+                        <h5>disconnect</h5>
+                        This event <span style="font-weight: 600">("disconnect")</span> has to be emitted, when the user gets disconnected(logout).<br/>
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<br/><br/><br/><br/>
+        <footer style="background-color: black; min-height: 3em">
+            <center style="color: white; margin: auto; padding-top: 1em;"><span>2018</span> Created by Anchal Nigam</center>
+        </footer>
+    <!--  Scripts-->
+    <script src="assets/js/jquery-2.1.1.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.scrollspy').scrollSpy();
+    });
+    </script>
+    <script>
+    (function($) {
+        $(function() {
+
+            $('.button-collapse').sideNav();
+
+        }); // end of document ready
+    })(jQuery); // end of jQuery name space
+    </script>
+</body>
+
+
+<!-- Mirrored from chatapi.edwisor.com/eventDoc/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 May 2018 07:42:06 GMT -->
+</html>
